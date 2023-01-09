@@ -1,0 +1,25 @@
+﻿@page "/"
+@inject INotificationService NotificationService
+
+<PageTitle>Share blazor app code</PageTitle>
+
+<h1>DEMO 4</h1>
+
+<button class="btn btn-primary" @onclick="ShowAlert">alert</button>
+<button class="btn btn-primary" @onclick="ShowConfirm">confirm</button>
+
+
+@code {
+
+    private async Task ShowAlert()
+    {
+        await NotificationService.ShowAlertAsync("Messaggio in un alert.");
+    }
+
+    private async Task ShowConfirm()
+    {
+        var result = await NotificationService.ShowConfirmAsync("Sicuro?");
+        await NotificationService.ShowAlertAsync($"Hai risposto {result}");
+    }
+
+}
